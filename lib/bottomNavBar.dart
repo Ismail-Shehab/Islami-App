@@ -44,29 +44,29 @@ class _BottomNavBarState extends State<BottomNavBar> {
       body: screens[bottomNavBarIconIndx],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: bottomNavBarIconIndx,
-        
+
         onTap: (index) => setState(() => bottomNavBarIconIndx = index),
         type: BottomNavigationBarType.fixed,
         backgroundColor: Color(0xffb7935f),
         selectedItemColor: Color(0xff242424),
         showUnselectedLabels: false,
-        iconSize: 30,
+        iconSize: 10,
         selectedFontSize: 18,
         items: [
           BottomNavigationBarItem(
-            icon: Image.asset('assets/iconRadio.png', color: iconColor(0)),
+            icon: Image.asset('assets/images/icon_radio.png', color: iconColor(0)),
             label: 'الراديو',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/iconSebha.png', color: iconColor(1)),
+            icon: Image.asset('assets/images/icon_sebha.png', color: iconColor(1)),
             label: 'السبحة'
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/iconHadeth.png', color: iconColor(2)),
+            icon: Image.asset('assets/images/icon_hadeth.png', color: iconColor(2)),
             label: 'الأحاديث',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/iconQuran.png', color: iconColor(3)),
+            icon: Image.asset('assets/images/icon_quran.png', color: iconColor(3)),
             label: 'القرآن'
           ),
         ]
