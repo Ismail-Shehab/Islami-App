@@ -41,33 +41,56 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[bottomNavBarIconIndx],
+      body: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage('assets/images/light_bg.png'), fit: BoxFit.fill),
+        ),
+        child: Column(
+          children: [
+            // SizedBox(height: 20,),
+            Container(
+              margin: EdgeInsets.only(top: 25),
+              child: Text(
+                'إسلامى',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Expanded(
+              child: screens[bottomNavBarIconIndx],
+            )
+          ]
+        )
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: bottomNavBarIconIndx,
-
         onTap: (index) => setState(() => bottomNavBarIconIndx = index),
         type: BottomNavigationBarType.fixed,
         backgroundColor: Color(0xffb7935f),
         selectedItemColor: Color(0xff242424),
         showUnselectedLabels: false,
-        iconSize: 10,
+        // iconSize: 10,
         selectedFontSize: 18,
         items: [
           BottomNavigationBarItem(
-            icon: Image.asset('assets/images/icon_radio.png', color: iconColor(0)),
+            icon: Image.asset('assets/images/icon_radio.png', color: iconColor(0), scale: 1.2),
             label: 'الراديو',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/images/icon_sebha.png', color: iconColor(1)),
+            icon: Image.asset('assets/images/icon_sebha.png', color: iconColor(1), scale: 1.2),
             label: 'السبحة'
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/images/icon_hadeth.png', color: iconColor(2)),
+            icon: Image.asset('assets/images/icon_hadeth.png', color: iconColor(2), scale: 1.2),
             label: 'الأحاديث',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/images/icon_quran.png', color: iconColor(3)),
-            label: 'القرآن'
+            icon: Image.asset('assets/images/icon_quran.png', color: iconColor(3), scale: 1.2),
+            label: 'القرآن',
           ),
         ]
       ),
