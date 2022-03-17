@@ -5,8 +5,10 @@ import 'package:flutter_application_1/bottomNavBar.dart';
 import 'package:flutter_application_1/tasbeeh.dart';
 import 'package:flutter_application_1/ahadeth.dart';
 
+
 void main(List<String> args) {
   runApp(MaterialApp(
+    
     routes: {
       BottomNavBar.ROUTE_NAME :(context) => BottomNavBar(),
       QuranRadio.ROUTE_NAME :(context) => QuranRadio(),
@@ -16,5 +18,11 @@ void main(List<String> args) {
     initialRoute: BottomNavBar.ROUTE_NAME,
     
   ));
+}
+
+
+
+class Styling {
+  static Color mainColor = Color(0xffb7935f);
 }
 

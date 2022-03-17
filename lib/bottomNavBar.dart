@@ -1,13 +1,14 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, use_key_in_widget_constructors, file_names
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/ahadeth.dart';
+import 'package:flutter_application_1/main.dart';
 import 'package:flutter_application_1/quran.dart';
 import 'package:flutter_application_1/tasbeeh.dart';
 
 import 'Radio.dart';
 
-class BottomNavBar extends StatefulWidget {
+class BottomNavBar extends StatefulWidget { 
   static String ROUTE_NAME = 'homeScreen';
 
   @override
@@ -18,12 +19,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
 
   // the index of the selected navigation bar's Icon 
-  int bottomNavBarIconIndx = 3;
+  int bottomNavBarIconIndx = 3; /* cspell: disable-line */
 
   // this function will change the color of the selected image.asset icons
   // because selectedItemColor doesn't work on image.asset icons
   Color iconColor (int iconIndex){
-    if(iconIndex == bottomNavBarIconIndx){ return Colors.black;}else { return Color(0xfff8f8f8);}
+    if(iconIndex == bottomNavBarIconIndx){ return Colors.black;}else { return Color(0xfff8f8f8);} /* cspell: disable-line */
   }
 
   // array of bodies 
@@ -61,16 +62,16 @@ class _BottomNavBarState extends State<BottomNavBar> {
               ),
             ),
             Expanded(
-              child: screens[bottomNavBarIconIndx],
+              child: screens[bottomNavBarIconIndx], /* cspell: disable-line */
             )
           ]
         )
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: bottomNavBarIconIndx,
-        onTap: (index) => setState(() => bottomNavBarIconIndx = index),
+        currentIndex: bottomNavBarIconIndx, /* cspell: disable-line */
+        onTap: (index) => setState(() => bottomNavBarIconIndx = index), /* cspell: disable-line */
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Color(0xffb7935f),
+        backgroundColor: Styling.mainColor,
         selectedItemColor: Color(0xff242424),
         showUnselectedLabels: false,
         // iconSize: 10,
@@ -78,19 +79,19 @@ class _BottomNavBarState extends State<BottomNavBar> {
         items: [
           BottomNavigationBarItem(
             icon: Image.asset('assets/images/icon_radio.png', color: iconColor(0), scale: 1.2),
-            label: 'الراديو',
+            label: 'الراديو', /* cspell: disable-line */
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/images/icon_sebha.png', color: iconColor(1), scale: 1.2),
-            label: 'السبحة'
+            icon: Image.asset('assets/images/icon_sebha.png', color: iconColor(1), scale: 1.2), /* cspell: disable-line */
+            label: 'السبحة' /* cspell: disable-line */
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/images/icon_hadeth.png', color: iconColor(2), scale: 1.2),
-            label: 'الأحاديث',
+            icon: Image.asset('assets/images/icon_hadeth.png', color: iconColor(2), scale: 1.2), /* cspell: disable-line */
+            label: 'الأحاديث', /* cspell: disable-line */
           ),
           BottomNavigationBarItem(
             icon: Image.asset('assets/images/icon_quran.png', color: iconColor(3), scale: 1.2),
-            label: 'القرآن',
+            label: 'القرآن', /* cspell: disable-line */
           ),
         ]
       ),
