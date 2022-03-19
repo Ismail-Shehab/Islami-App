@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, use_key_in_widget_constructors, annotate_overrides, avoid_print, no_logic_in_create_state
+/* cSpell:disable */
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/main.dart';
 import 'package:flutter_application_1/sura_content.dart';
@@ -6,16 +7,16 @@ import 'package:flutter_application_1/sura_content.dart';
 class Quran extends StatefulWidget {
   static String ROUTE_NAME = 'quran';
   static List SuraNames = [
-    "الفاتحه","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود" /* cspell: disable-line */
-    ,"يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون" /* cspell: disable-line */
-    ,"النّور","الفرقان","الشعراء","النّمل","القصص","العنكبوت","الرّوم","لقمان","السجدة","الأحزاب","سبأ" /* cspell: disable-line */
-    ,"فاطر","يس","الصافات","ص","الزمر","غافر","فصّلت","الشورى","الزخرف","الدّخان","الجاثية","الأحقاف" /* cspell: disable-line */
-    ,"محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة" /* cspell: disable-line */
-    ,"الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج" /* cspell: disable-line */
-    ,"نوح","الجن","المزّمّل","المدّثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الإنفطار" /* cspell: disable-line */
-    ,"المطفّفين","الإنشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح" /* cspell: disable-line */
-    ,"التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر", /* cspell: disable-line */
-    "الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس" /* cspell: disable-line */
+    "الفاتحه","البقرة","آل عمران","النساء","المائدة","الأنعام","الأعراف","الأنفال","التوبة","يونس","هود" 
+    ,"يوسف","الرعد","إبراهيم","الحجر","النحل","الإسراء","الكهف","مريم","طه","الأنبياء","الحج","المؤمنون" 
+    ,"النّور","الفرقان","الشعراء","النّمل","القصص","العنكبوت","الرّوم","لقمان","السجدة","الأحزاب","سبأ" 
+    ,"فاطر","يس","الصافات","ص","الزمر","غافر","فصّلت","الشورى","الزخرف","الدّخان","الجاثية","الأحقاف" 
+    ,"محمد","الفتح","الحجرات","ق","الذاريات","الطور","النجم","القمر","الرحمن","الواقعة","الحديد","المجادلة" 
+    ,"الحشر","الممتحنة","الصف","الجمعة","المنافقون","التغابن","الطلاق","التحريم","الملك","القلم","الحاقة","المعارج" 
+    ,"نوح","الجن","المزّمّل","المدّثر","القيامة","الإنسان","المرسلات","النبأ","النازعات","عبس","التكوير","الإنفطار" 
+    ,"المطفّفين","الإنشقاق","البروج","الطارق","الأعلى","الغاشية","الفجر","البلد","الشمس","الليل","الضحى","الشرح" 
+    ,"التين","العلق","القدر","البينة","الزلزلة","العاديات","القارعة","التكاثر","العصر", 
+    "الهمزة","الفيل","قريش","الماعون","الكوثر","الكافرون","النصر","المسد","الإخلاص","الفلق","الناس" 
   ];
 
   @override
@@ -26,8 +27,8 @@ class _QuranState extends State<Quran> {
   // list of sura names
   final List suraNames;
 
-  // list of number of ayas in every sura /* cspell: disable-line */
-  List<int> suraAyatNum =  /* cspell: disable-line */
+  // list of number of ayas in every sura 
+  List<int> suraAyatNum =  
     [
       7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,
       135,112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,54,
@@ -63,13 +64,13 @@ class _QuranState extends State<Quran> {
                 child: Row(
                     children: [
                       
-                      buildHeaders('عدد الآيات'), /* cspell: disable-line */
+                      buildHeaders('عدد الآيات'), 
                       VerticalDivider(
                         width: 2,
                         thickness: 2,
                         color: Styling.mainColor,
                       ),
-                      buildHeaders('اسم السورة'), /* cspell: disable-line */
+                      buildHeaders('اسم السورة'), 
                     ],
                   ),
               ),
@@ -81,11 +82,11 @@ class _QuranState extends State<Quran> {
               ListView.builder(
                 // removing the padding because it has a initial value of 8
                 padding: EdgeInsets.all(0),
-                // adding shrink wrap to give the listview the height of it's child /* cspell: disable-line */
+                // adding shrink wrap to give the listview the height of it's child 
                 shrinkWrap: true,
-                // disable the scrolling to able the parent listview to scroll while the child in the viewport /* cspell: disable-line */
+                // disable the scrolling to able the parent listview to scroll while the child in the viewport 
                 physics: NeverScrollableScrollPhysics(),
-                // give the listview the number of elements it's going to build /* cspell: disable-line */
+                // give the listview the number of elements it's going to build 
                 itemCount: suraNames.length,
                 itemBuilder: (context, i) {
 
@@ -107,13 +108,13 @@ class _QuranState extends State<Quran> {
                         child: Row(
                               children: [
                                 // sura name
-                                buildSuraList(suraAyatNum, i), /* cspell: disable-line */
+                                buildSuraList(suraAyatNum, i), 
                                 VerticalDivider(
                                   color: Styling.mainColor,
                                   thickness: 2,
                                   width: 2,
                                 ),
-                                // the number of ayat in the sura /* cspell: disable-line */
+                                // the number of ayat in the sura 
                                 buildSuraList(suraNames, i)
                               ],
                             ),
@@ -134,7 +135,7 @@ class _QuranState extends State<Quran> {
 
   // a widget that takes a list and the index
   // and returns the value of the element with that index from the given list
-  // (suraAyatNum, 0) returns 7 /* cspell: disable-line */
+  // (suraAyatNum, 0) returns 7 
   // (suraNames, 0) returns "الفاتحه"
   Widget buildSuraList (List sura, int index) => Expanded(
       child: InkWell(

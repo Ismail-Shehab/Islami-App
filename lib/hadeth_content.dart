@@ -1,19 +1,20 @@
-// ignore_for_file: use_key_in_widget_constructors, avoid_unnecessary_containers,, non_constant_identifier_names 
+// ignore_for_file: use_key_in_widget_constructors, avoid_unnecessary_containers,, non_constant_identifier_names
+/* cSpell:disable */
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/main.dart';
 
-class HadethContent extends StatefulWidget { /* cspell: disable-line */
+class HadethContent extends StatefulWidget { 
 
   
-  static String ROUTE_NAME = 'hadeth content';/* cspell: disable-line */
-  final String hadeth;/* cspell: disable-line */
-  const HadethContent(this.hadeth);/* cspell: disable-line */
+  static String ROUTE_NAME = 'hadeth content';
+  final String hadeth;
+  const HadethContent(this.hadeth);
   @override
-  State<HadethContent> createState() => _HadethContent();/* cspell: disable-line */
+  State<HadethContent> createState() => _HadethContent();
 }
 
-class _HadethContent extends State<HadethContent> {/* cspell: disable-line */
+class _HadethContent extends State<HadethContent> {
 @override
   
   @override
@@ -41,7 +42,7 @@ class _HadethContent extends State<HadethContent> {/* cspell: disable-line */
           ),
         centerTitle: true,
         // the appBar title
-        title: const Text('إسلامي', /* cspell: disable-line */
+        title: const Text('إسلامي', 
         textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.black,
@@ -58,7 +59,7 @@ class _HadethContent extends State<HadethContent> {/* cspell: disable-line */
                                               // start of the body
       body: Container(
         // the body padding
-        padding: const EdgeInsets.fromLTRB(20, 0, 25, 0), /* cspell: disable-line */
+        padding: const EdgeInsets.fromLTRB(20, 0, 25, 0), 
         width: double.infinity,
         // the body background image
         decoration: const BoxDecoration(
@@ -67,30 +68,30 @@ class _HadethContent extends State<HadethContent> {/* cspell: disable-line */
         alignment: Alignment.center,
           child: Column(
             children: [
-              // the space between the appBar title and the hadeth's content-box /* cspell: disable-line */
+              // the space between the appBar title and the hadeth's content-box 
               const Expanded(
                 flex: 12,
                 child: Text(''),
               ),
-                                            // the hadeth's content-box              /* cspell: disable-line */
+                                            // the hadeth's content-box              
               Expanded(
                 flex: 65,
                 child: Container(
 
                   // the content-box decoration
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(166, 255, 255, 255), /* cspell: disable-line */
+                    color: const Color.fromARGB(166, 255, 255, 255), 
                     borderRadius: BorderRadius.circular(22)
 
                   ),
                   height: double.infinity,
                   width: double.infinity,
-                  padding: const EdgeInsets.fromLTRB(20, 40, 20, 40), /* cspell: disable-line */
+                  padding: const EdgeInsets.fromLTRB(20, 40, 20, 40), 
                   child: ListView(
                     padding: const EdgeInsets.all(0),
                     children: [
-                      // the hadth's name /* cspell: disable-line */
-                      Text(widget.hadeth.split('\n')[0], /* cspell: disable-line */
+                      // the hadth's name 
+                      Text(widget.hadeth.split('\n')[0], 
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
                                   fontSize: 25,
@@ -105,8 +106,8 @@ class _HadethContent extends State<HadethContent> {/* cspell: disable-line */
                       ),
                       const Padding(padding: EdgeInsets.only(top: 20),),
                       Text(
-                        // the hadeth body /* cspell: disable-line */
-                        widget.hadeth.split('\n').skip(1).toString(),/* cspell: disable-line */
+                        // the hadeth body 
+                        widget.hadeth.split('\n').skip(1).toString(),
                       
                       textDirection: TextDirection.rtl,
                       style: const TextStyle(
