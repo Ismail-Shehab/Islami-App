@@ -1,24 +1,28 @@
-// ignore_for_file: use_key_in_widget_constructors, avoid_unnecessary_containers,, non_constant_identifier_names
-/* cSpell:disable */
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/main.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HadethContent extends StatefulWidget { 
 
   
   static String ROUTE_NAME = 'hadeth content';
   final String hadeth;
-  const HadethContent(this.hadeth);
+  final ThemeData themeColor;
+  const HadethContent(this.hadeth, this.themeColor);
   @override
   State<HadethContent> createState() => _HadethContent();
 }
 
 class _HadethContent extends State<HadethContent> {
+  
 @override
   
   @override
   Widget build(BuildContext context) {
+    Color textColor = widget.themeColor.focusColor;
+    Color? headerColor = widget.themeColor.textTheme.bodyText2!.color;
+    
+    bool isDarkMode = textColor == const Color(0xfffacc1d);
     return Scaffold(
       // extends the body behind the appBar to make sure that the background
       // covers the full device's screen
@@ -38,14 +42,14 @@ class _HadethContent extends State<HadethContent> {
             Navigator.pop(context);
           },
           // the back arrow icon at the appBar's leading
-          child: const Icon(Icons.arrow_back, color: Colors.black,)
+          child: Icon(Icons.arrow_back, color: headerColor,)
           ),
         centerTitle: true,
         // the appBar title
-        title: const Text('إسلامي', 
+        title: Text(AppLocalizations.of(context)!.islami, 
         textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.black,
+              color: headerColor,
               fontSize: 25,
               fontWeight: FontWeight.bold
             ),
@@ -62,8 +66,12 @@ class _HadethContent extends State<HadethContent> {
         padding: const EdgeInsets.fromLTRB(20, 0, 25, 0), 
         width: double.infinity,
         // the body background image
-        decoration: const BoxDecoration(
-          image: DecorationImage(image: AssetImage('assets/images/light_bg.png'), fit: BoxFit.fill),
+        decoration:  BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+              isDarkMode? 'assets/images/dark_bg.png':'assets/images/light_bg.png'),
+              fit: BoxFit.fill
+            ),
         ),
         alignment: Alignment.center,
           child: Column(
@@ -80,7 +88,7 @@ class _HadethContent extends State<HadethContent> {
 
                   // the content-box decoration
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(166, 255, 255, 255), 
+                    color: widget.themeColor.canvasColor, 
                     borderRadius: BorderRadius.circular(22)
 
                   ),
@@ -93,9 +101,10 @@ class _HadethContent extends State<HadethContent> {
                       // the hadth's name 
                       Text(widget.hadeth.split('\n')[0], 
                                 textAlign: TextAlign.center,
-                                style: const TextStyle(
+                                style: TextStyle(
+                                  color: textColor,                                  
                                   fontSize: 25,
-                                  fontWeight: FontWeight.bold
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                       Divider(
@@ -110,7 +119,8 @@ class _HadethContent extends State<HadethContent> {
                         widget.hadeth.split('\n').skip(1).toString(),
                       
                       textDirection: TextDirection.rtl,
-                      style: const TextStyle(
+                      style: TextStyle(
+                        color: textColor,
                         fontSize: 20
                       ),),
                     ],

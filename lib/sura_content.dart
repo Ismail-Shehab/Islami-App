@@ -1,19 +1,20 @@
-// ignore_for_file:  use_key_in_widget_constructors, prefer_typing_uninitialized_variables, annotate_overrides, no_logic_in_create_state, non_constant_identifier_names, must_call_super
-/* cSpell:disable */
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/main.dart';
-import 'package:flutter_application_1/quran.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class SuraContent extends StatefulWidget {
   static String ROUTE_NAME = 'sura content';
 
   // the sura index passed from the quran page
   final int suraIndex;
+  // the sura name passed from the quran page
+  final String suraName;
+  
+  // the current theme passed from the quran page
+  final ThemeData themeColor;
 
-  const SuraContent(this.suraIndex);
+  const SuraContent(this.suraIndex, this.themeColor, this.suraName);
 
   @override
   State<SuraContent> createState() => _SuraContentState();
@@ -49,7 +50,13 @@ class _SuraContentState extends State<SuraContent> {
   void initState() {
     fetchSuraData();
   }
+  @override
   Widget build(BuildContext context) {
+    Color? headerColor = widget.themeColor.textTheme.bodyText2!.color;
+    Color? contentColor = widget.themeColor.focusColor;
+    bool isDarkMode = contentColor == const Color(0xfffacc1d);
+    bool isArabic = AppLocalizations.of(context)!.islami == 'إسلامى';
+    
     return Scaffold(
 
       // extends the body behind the appBar to make sure that the background
@@ -71,15 +78,15 @@ class _SuraContentState extends State<SuraContent> {
             Navigator.pop(context);
           },
           // the back arrow icon at the appBar's leading
-          child: const Icon(Icons.arrow_back, color: Colors.black,)
+          child:  Icon(Icons.arrow_back, color: headerColor,)
           ),
         
         centerTitle: true,
         // the appBar title
-        title: const Text('إسلامي', 
+        title: Text(isArabic? 'إسلامى' : 'Islami', 
         textAlign: TextAlign.center,
             style: TextStyle(
-              color: Colors.black,
+              color: headerColor,
               fontSize: 25,
               fontWeight: FontWeight.bold
             ),
@@ -92,13 +99,17 @@ class _SuraContentState extends State<SuraContent> {
                                               // start of the body
         
       body: Container(
+        
         // the body padding
         padding:const EdgeInsets.fromLTRB(20, 0, 25, 0), 
         // the body width 
         width: double.infinity,
         // the body background image
-        decoration:const BoxDecoration(
-          image: DecorationImage(image: AssetImage('assets/images/light_bg.png'), fit: BoxFit.fill),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+               isDarkMode ? 'assets/images/dark_bg.png': 'assets/images/light_bg.png'),
+            fit: BoxFit.fill),
         ),
         alignment: Alignment.center,
           child: Column(
@@ -114,7 +125,7 @@ class _SuraContentState extends State<SuraContent> {
                 child: Container(
                   // the content-box decoration
                   decoration: BoxDecoration(
-                    color:const  Color.fromARGB(166, 255, 255, 255), 
+                    color: widget.themeColor.canvasColor, 
                     borderRadius: BorderRadius.circular(22)
 
                   ),
@@ -124,31 +135,25 @@ class _SuraContentState extends State<SuraContent> {
                   child: ListView(
                     padding:const EdgeInsets.all(0),
                     children: [
-                      // the sura's name
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        textDirection: TextDirection.rtl,
                         children: [
-                          Expanded(
-                            flex: 80,
-                            child: Text('سورة ${Quran.SuraNames[widget.suraIndex]}', 
-                                textAlign: TextAlign.right,
-                                style:const TextStyle(
+                          SizedBox(width: MediaQuery.of(context).size.width * 0.12,),
+                      // the icon beside the sura's name
+                           Icon(Icons.play_circle,color: contentColor),
+                          SizedBox(width: MediaQuery.of(context).size.width * 0.06,),
+                            
+                          
+                      // the sura's name
+                           Text('سورة ${widget.suraName}',
+                                style: TextStyle(
+                                  color: contentColor,
                                   fontSize: 25,
                                   fontWeight: FontWeight.bold
-                                ),
-                              ),
-                          ),
-                          const Expanded(
-                            flex: 5,
-                            child: Text('')
-                          ),
-                          // the icon beside the sura's name
-                          Expanded(
-                            flex: 30,
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              child: const Icon(Icons.play_circle))
-                          ),
+                                
+                          ),)
+                          
                             
                           
 
@@ -164,7 +169,8 @@ class _SuraContentState extends State<SuraContent> {
                       // the sura body
                       Text(sura,
                       textDirection: TextDirection.rtl,
-                      style: const TextStyle(
+                      style: TextStyle(
+                        color: contentColor,
                         fontSize: 20
                       ),),
                     ],

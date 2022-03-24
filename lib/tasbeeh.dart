@@ -1,8 +1,6 @@
-// ignore_for_file: use_key_in_widget_constructors,, non_constant_identifier_names
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/main.dart';
 
 class Tasbeeh extends StatefulWidget {
   static String ROUTE_NAME = 'tasbeeh';
@@ -25,6 +23,7 @@ class _TasbeehState extends State<Tasbeeh> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode = Theme.of(context).focusColor == const Color(0xfffacc1d);
     // the width of the device
     double displayWidth = MediaQuery.of(context).size.width;
     // the height of the device
@@ -38,7 +37,11 @@ class _TasbeehState extends State<Tasbeeh> {
           // start of the sebha's head
           Padding(
             padding: EdgeInsets.only(left: displayWidth *.105),
-            child:const Image(image: AssetImage('assets/images/head_sebha_logo.png'), width: 70,),
+            child: Image(
+              image: AssetImage(
+                isDarkMode? 'assets/images/head_sebha_dark.png':'assets/images/head_sebha_logo.png'),
+              width: 70,
+            ),
           ),
           // end of the sebha's head
 
@@ -52,7 +55,12 @@ class _TasbeehState extends State<Tasbeeh> {
             child:Transform.rotate(
               angle: angle,
               // start of the sebha's body
-              child: const Image(image: AssetImage('assets/images/body_sebha_logo.png'), width: 200,)),
+              child: Image(
+                image: AssetImage(
+                isDarkMode? 'assets/images/body_sebha_dark.png' :  'assets/images/body_sebha_logo.png'
+                ),
+                width: 200,)
+            ),
               // end of the sebha's body
           ),
           )
@@ -73,7 +81,7 @@ class _TasbeehState extends State<Tasbeeh> {
         
         Container(
           decoration: BoxDecoration(
-            color: const Color(0xffcab497),
+            color: isDarkMode ? const Color.fromARGB(255, 18, 23, 41) : const Color(0xffcab497),
             borderRadius: BorderRadius.circular(20)
           ),
           padding: EdgeInsets.symmetric(vertical: displayHeight * 0.03, horizontal: displayWidth * 0.045),
@@ -91,7 +99,7 @@ class _TasbeehState extends State<Tasbeeh> {
         // start of azkar container
         Container(
           decoration: BoxDecoration(
-            color: Styling.mainColor,
+            color: Theme.of(context).primaryColor,
             borderRadius: BorderRadius.circular(50)
           ),
           padding: EdgeInsets.symmetric(vertical: displayHeight * 0.007, horizontal: displayWidth * 0.045),
@@ -100,8 +108,8 @@ class _TasbeehState extends State<Tasbeeh> {
           child: Text(
             azkar[azkarTracker],
             
-            style: const TextStyle(
-              color: Colors.white,
+            style: TextStyle(
+              color: Theme.of(context).canvasColor,
               fontSize: 20,
               fontWeight: FontWeight.w900
             ),),

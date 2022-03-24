@@ -1,10 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, non_constant_identifier_names, use_key_in_widget_constructors, file_names
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/ahadeth.dart';
-import 'package:flutter_application_1/main.dart';
 import 'package:flutter_application_1/quran.dart';
 import 'package:flutter_application_1/tasbeeh.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'Radio.dart';
 
@@ -19,79 +17,107 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
 
   // the index of the selected navigation bar's Icon 
-  int bottomNavBarIconIndx = 3; /* cspell: disable-line */
+  int bottomNavBarIconIndx = 0; 
 
   // this function will change the color of the selected image.asset icons
   // because selectedItemColor doesn't work on image.asset icons
   Color iconColor (int iconIndex){
-    if(iconIndex == bottomNavBarIconIndx){ return Colors.black;}else { return Color(0xfff8f8f8);} /* cspell: disable-line */
+    Color primaryColor = Theme.of(context).focusColor;
+    if(iconIndex == bottomNavBarIconIndx){ return primaryColor;}else { return const Color(0xfff8f8f8);} 
   }
 
   // array of bodies 
   // every body contains the content of the selected icon
   final screens = [
-    QuranRadio(),
-    Tasbeeh(),
+    Quran(),
     Ahadeth(),
-    Quran()
-
+    Tasbeeh(),
+    QuranRadio(),
   ];
   
 
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode = Theme.of(context).focusColor == const Color(0xfffacc1d);
     return Scaffold(
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage('assets/images/light_bg.png'), fit: BoxFit.fill),
+          image: DecorationImage(
+
+
+            // the background Image
+
+
+            image: AssetImage(
+              isDarkMode ? 'assets/images/dark_bg.png' :
+              'assets/images/light_bg.png'),
+            fit: BoxFit.fill
+          ),
         ),
         child: Column(
           children: [
-            // SizedBox(height: 20,),
             Container(
-              margin: EdgeInsets.only(top: 25),
+              margin: const EdgeInsets.only(top: 25),
               child: Text(
-                'إسلامى',
+
+
+                // the title
+
+                AppLocalizations.of(context)!.islami,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
             Expanded(
-              child: screens[bottomNavBarIconIndx], /* cspell: disable-line */
+
+              // the content body
+
+
+              child: screens[bottomNavBarIconIndx], 
             )
           ]
         )
       ),
+
+      // the bottom Navigation bar
+
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: bottomNavBarIconIndx, /* cspell: disable-line */
-        onTap: (index) => setState(() => bottomNavBarIconIndx = index), /* cspell: disable-line */
+        
+        currentIndex: bottomNavBarIconIndx, 
+        onTap: (index) => setState(() => bottomNavBarIconIndx = index), 
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Styling.mainColor,
-        selectedItemColor: Color(0xff242424),
         showUnselectedLabels: false,
-        // iconSize: 10,
         selectedFontSize: 18,
         items: [
           BottomNavigationBarItem(
-            icon: Image.asset('assets/images/icon_radio.png', color: iconColor(0), scale: 1.2),
-            label: 'الراديو', /* cspell: disable-line */
+
+            // the Quraan icon
+            icon: Image.asset('assets/images/icon_quran.png', color: iconColor(0), scale: 1.2),
+            // the Quraan text
+            label: AppLocalizations.of(context)!.quraan, 
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/images/icon_sebha.png', color: iconColor(1), scale: 1.2), /* cspell: disable-line */
-            label: 'السبحة' /* cspell: disable-line */
+            // the Ahadeth icon
+            icon: Image.asset('assets/images/icon_hadeth.png', color: iconColor(1), scale: 1.2), 
+            // the Ahadeth text
+            label: AppLocalizations.of(context)!.ahadeth, 
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/images/icon_hadeth.png', color: iconColor(2), scale: 1.2), /* cspell: disable-line */
-            label: 'الأحاديث', /* cspell: disable-line */
+            // the Sebha icon
+            icon: Image.asset('assets/images/icon_sebha.png', color: iconColor(2), scale: 1.2), 
+            // the Sebha text
+            label: AppLocalizations.of(context)!.tasbeh 
           ),
-          BottomNavigationBarItem(
-            icon: Image.asset('assets/images/icon_quran.png', color: iconColor(3), scale: 1.2),
-            label: 'القرآن', /* cspell: disable-line */
+          BottomNavigationBarItem( 
+            // the Radio Icon
+            icon: Image.asset('assets/images/icon_radio.png', color: iconColor(3)),
+            // the Radio text
+            label: AppLocalizations.of(context)!.radio,
           ),
         ]
       ),

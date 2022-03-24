@@ -1,9 +1,7 @@
-// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, use_key_in_widget_constructors
-
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/hadeth_content.dart';/* cspell: disable-line */
-import 'package:flutter_application_1/main.dart';
+import 'package:flutter_application_1/hadeth_content.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Ahadeth extends StatefulWidget {
   static String ROUTE_NAME = 'ahadeth';
@@ -32,32 +30,33 @@ class _AhadethState extends State<Ahadeth> {
   @override
   Widget build(BuildContext context) {
     return ListView(
-            padding: EdgeInsets.fromLTRB(0,7,0,0), /* cspell: disable-line */
+            padding: const EdgeInsets.fromLTRB(0,7,0,0), 
             
                                                     // start of the ahadeth page
             
             children: [
                                               // start of ahadeth logo 
               
-              Image(image: AssetImage('assets/images/hadeth_logo.png'), width: 180, height: 180,), /* cspell: disable-line */
+              const Image(image: AssetImage('assets/images/hadeth_logo.png'), width: 180, height: 180,), 
                                               // end of ahadeth logo
 
                                               // start of table header
               Container(
-                margin: EdgeInsets.only(bottom: 10),
-                padding: EdgeInsets.all(3),
+                margin: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.all(3),
                 decoration: BoxDecoration(
                   border: Border.symmetric(
                     horizontal: BorderSide(
-                      color: Styling.mainColor,
+                      color: Theme.of(context).primaryColor,
                       width: 2.5
                     )
                   )
                 ),
                 child: Text(
-                  'الأحاديث', /* cspell: disable-line */
+                  // the list header text
+                  AppLocalizations.of(context)!.ahadeth, 
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold
                   ),
@@ -66,25 +65,25 @@ class _AhadethState extends State<Ahadeth> {
                                           // end of table header
 
             ListView.builder(                                
-              padding: EdgeInsets.all(0),
+              padding: const EdgeInsets.all(0),
               itemCount: ahadethList.length,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemBuilder: (context, index) { 
                 return InkWell(
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: ((context) => HadethContent(ahadethList[index].trim())/* cspell: disable-line */
+                      MaterialPageRoute(builder: ((context) => HadethContent(ahadethList[index].trim(), Theme.of(context))
                       ))
                     );
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      'الحديث رقم ${index+1}', /* cspell: disable-line */
+                      'الحديث رقم ${index+1}', 
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 21,
                         fontWeight: FontWeight.bold
                       ),
